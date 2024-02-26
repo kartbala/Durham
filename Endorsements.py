@@ -160,7 +160,6 @@ estimate_4 = filtered_data_2020[['Precinct', '% Brenda Howerton', '% John Rooks,
 
 ### estimate_5 regression
 
-
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
@@ -207,67 +206,6 @@ X_const = sm.add_constant(X)
 
 # Fit the linear regression model
 model = sm.OLS(y, X_const).fit()
-
-# Print the summary of the model
-print(model.summary())
-
-####
-
-import pandas as pd
-import numpy as np
-import statsmodels.api as sm
-from sklearn.preprocessing import OneHotEncoder
-
-# Load the data
-file_path = "~/Downloads/Merged_Results_Precinct_Demographics_updated.csv"
-data = pd.read_csv(file_path)
-
-# Convert Vote_% from string to numeric
-data['Vote_%'] = data['Vote_%'].str.rstrip('%').astype('float') / 100.0
-
-# Drop rows with any missing values
-data_clean = data.dropna()
-
-# One-hot encode 'candidate_age' and 'candidate_race' variables
-encoder = OneHotEncoder(drop='first')
-encoded_vars = encoder.fit_transform(data_clean[['candidate_age', 'candidate_race']]).toarray()
-encoded_vars_df = pd.DataFrame(encoded_vars, columns=encoder.get_feature_names_out(['candidate_age', 'candidate_race']), index=data_clean.index)
-
-# Merge the encoded variables back into the dataframe
-data_preprocessed = pd.concat([data_clean, encoded_vars_df], axis=1)
-
-# Calculate alignment variables
-data_preprocessed['white_alignment'] = data_preprocessed['precinct_%White'] * data_preprocessed['candidate_race_white']
-data_preprocessed['black_alignment'] = data_preprocessed['precinct_%Black'] * (1 - data_preprocessed['candidate_race_white'])
-data_preprocessed['other_alignment'] = data_preprocessed['precinct_%Other'] * (1 - data_preprocessed['candidate_race_white'])
-data_preprocessed['young_alignment'] = data_preprocessed['precinct_%Young'] * data_preprocessed['candidate_age_young']
-data_preprocessed['old_alignment'] = data_preprocessed['precinct_% Old'] * data_preprocessed['candidate_age_old']
-
-# Gender variable
-data_preprocessed['male'] = np.where(data_preprocessed['candidate_sex'] == 'male', 1, 0)
-
-# # Create interaction terms between precinct_ID and Indy endorsement
-# data_preprocessed['precinct_Indy_interaction'] = data_preprocessed['precinct_ID'].astype(str) + '_' + data_preprocessed['Indy'].astype(str)
-# # One-hot encode the interaction variable
-# interaction_encoder = OneHotEncoder(drop='first', sparse=False)
-# precinct_Indy_encoded = interaction_encoder.fit_transform(data_preprocessed[['precinct_Indy_interaction']])
-# precinct_Indy_encoded_df = pd.DataFrame(precinct_Indy_encoded, columns=interaction_encoder.get_feature_names_out(['precinct_Indy_interaction']), index=data_preprocessed.index)
-
-# # Merge the interaction terms back into the dataframe
-# data_preprocessed = pd.concat([data_preprocessed, precinct_Indy_encoded_df], axis=1)
-
-# Drop unnecessary columns
-data_preprocessed.drop(['candidate_age', 'candidate_race', 'candidate_sex', 'Precinct', 'Candidate', 'year', 'precinct_%Black', 'precinct_%White', 'precinct_%Other', 'precinct_%Young', 'precinct_%Middle', 'precinct_% Old'], axis=1, inplace=True)
-
-# Define the independent variables (features) and the dependent variable (target)
-X = data_preprocessed.drop(['Vote_%'], axis=1)
-y = data_preprocessed['Vote_%']
-
-# Adding a constant to the model for the intercept
-X_const = sm.add_constant(X)
-
-# Fit the linear regression model
-model = sm.OLS(y.astype(float), X_const.astype(float)).fit()
 
 # Print the summary of the model
 print(model.summary())
