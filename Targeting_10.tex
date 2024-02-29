@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{xstring} % Add this for string manipulation
+\usepackage{currfile} % Add this package
+
+\begin{document}
+
+% Use the filename directly in the title (you might need to adjust this based on your file naming convention)
+
+% Use currfilebase to get the filename without the extension for the title
+\title{\currfilebase\ Targeting}
+\maketitle
+
+\section{Introduction}
+
+Welcome aboard! 
+
+\section{Maps}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{/Users/karthikbalasubramanian/Downloads/SD-22_Precinct_Map_08_2.pdf} 
+  \caption{Precinct Map}
+\end{figure}
+
+
+\section{Targeting}
+
+We have segmented potential voters into "Universes" to target for door knocking in priority order:
+
+\begin{itemize}
+
+\item \textbf{Universe A}: These voters have participated in all even year major election primaries since becoming registered. They have a proven history of consistent primary turnout. Target Universe A first.
+
+\item \textbf{Universe B}: These voters have voted in all recent even year major primaries since becoming eligible. However, they may have missed some municipal and odd year primaries. Target Universe B after completing Universe A outreach.
+
+\item \textbf{Universe C}: These voters have participated in some but not all recent even year major primaries since becoming eligible to vote. They are occasional major election primary voters. Shift to targeting Universe C after finishing Universe B.
+
+\item \textbf{Universe D}: These people have no history of voting in primary elections, but have voted in some general elections since registering. Engage this universe after exhausting consistent primary voters in A-C.
+
+\item \textbf{Universe E}: These voters have no election participation history at all - neither primary nor general elections. Universe E represents first-time voters to target if outreach has already been made to Universes A through D.
+
+\end{itemize}
+
+
+
+
+\begin{center}
+\begin{tabular}{
+  l
+  S[table-format=5, group-separator={,}]
+  S[table-format=5, group-separator={,}]
+  S[table-format=5, group-separator={,}]
+  S[table-format=5, group-separator={,}]
+  S[table-format=5, group-separator={,}]
+  S[table-format=6, group-separator={,}]
+}
+\toprule
+Precinct & {A} & {B} & {C} & {D} & {E} & {Total} \\
+\midrule
+01 & 117 & 235 & 404 & 340 & 142 & 1238 \\
+02 & 180 & 1190 & 975 & 1286 & 445 & 4076 \\
+03 & 217 & 643 & 1108 & 1098 & 152 & 3218 \\
+04 & 269 & 375 & 647 & 219 & 80 & 1590 \\
+05 & 79 & 1129 & 1535 & 3119 & 561 & 6423 \\
+06 & 195 & 399 & 724 & 498 & 192 & 2008 \\
+07 & 203 & 579 & 1010 & 895 & 175 & 2862 \\
+
+\rowcolor{yellow} 08 & 208 & 655 & 919 & 930 & 266 & 2978 \\
+09 & 233 & 544 & 1029 & 512 & 131 & 2449 \\
+10 & 130 & 551 & 669 & 815 & 290 & 2455 \\
+14 & 63 & 326 & 630 & 794 & 387 & 2200 \\
+15 & 74 & 211 & 428 & 530 & 192 & 1435 \\
+17 & 230 & 714 & 1158 & 1079 & 461 & 3642 \\
+18 & 77 & 331 & 614 & 869 & 443 & 2334 \\
+19 & 132 & 512 & 1108 & 954 & 305 & 3011 \\
+20 & 277 & 498 & 823 & 405 & 120 & 2123 \\
+21 & 179 & 414 & 690 & 352 & 113 & 1748 \\
+22 & 175 & 628 & 1431 & 1758 & 629 & 4621 \\
+23 & 331 & 1064 & 2093 & 2115 & 691 & 6294 \\
+24 & 190 & 627 & 1465 & 1004 & 290 & 3576 \\
+25 & 26 & 482 & 1074 & 774 & 162 & 2518 \\
+26 & 13 & 201 & 405 & 299 & 73 & 991 \\
+28 & 67 & 525 & 1142 & 761 & 188 & 2683 \\
+29 & 71 & 548 & 1324 & 1331 & 422 & 3696 \\
+30-1 & 171 & 752 & 1561 & 1667 & 450 & 4601 \\
+30-2 & 200 & 1149 & 2683 & 2469 & 640 & 7141 \\
+32 & 353 & 1154 & 1891 & 1460 & 267 & 5125 \\
+36 & 151 & 530 & 1003 & 896 & 304 & 2884 \\
+37 & 305 & 1066 & 2159 & 1414 & 337 & 5281 \\
+40 & 185 & 459 & 774 & 553 & 252 & 2223 \\
+43 & 334 & 1408 & 2680 & 1630 & 371 & 6423 \\
+44 & 134 & 1122 & 2351 & 1594 & 340 & 5541 \\
+45 & 183 & 843 & 1880 & 1152 & 259 & 4317 \\
+46 & 125 & 528 & 1104 & 1035 & 433 & 3225 \\
+50 & 164 & 776 & 1353 & 1190 & 322 & 3805 \\
+52 & 90 & 463 & 1171 & 1135 & 458 & 3317 \\
+\hline 
+  Total & 6131 & 23631 & 44015 & 38932 & 11343 & 124052 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+  \input{/Users/karthikbalasubramanian/Downloads/SD-22/Maps/aggregated_crosstab_sorted.tex}
+\end{center}  
+\end{document}
+
